@@ -1,0 +1,39 @@
+name: 构建 Markdown 并部署到 Pages
+
+# 触发条件：推送到 main 分支时执行
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 步骤 1：拉取仓库代码
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      # 步骤 2：安装 Python（mkdocs 基于 Python）
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'  # 指定 Python 版本
+
+      # 步骤 3：安装 mkdocs 及相关工具
+      - name: 安装 mkdocs
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs  # 核心工具
+          # 可选：安装主题（如 mkdocs-material 更美观）
+          pip install mkdocs-material
+
+      # 步骤 4：将 Markdown 生成 HTML（输出到 site 目录）
+      - name: 构建静态 HTML
+        run: mkdocs build  # 生成的 HTML 在 site 文件夹中
+
+      # 步骤 5：部署到 GitHub Pages
+      - name: 部署到 Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # 自动授权令牌
+          publish_dir: ./site  # 部署 mkdocs 生成的 site 目录
