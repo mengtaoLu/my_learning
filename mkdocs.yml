@@ -1,5 +1,6 @@
 site_name: 我的文档
 nav:
   - 首页: index.md
-  - swift: swift/index.md
+  - swift:
+      - index: swift/index.md
       - state: swift/state.md
