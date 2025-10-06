@@ -5,6 +5,12 @@ on:
   push:
     branches: [ main ]
 
+# 显式声明 GITHUB_TOKEN 的权限（按需添加）
+permissions:
+  contents: write  # 允许写入仓库内容（如推送分支）
+  pages: write     # 允许部署 GitHub Pages
+  id-token: write  # 部分场景需要（如使用 OIDC 认证）
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
