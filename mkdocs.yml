@@ -2,6 +2,6 @@ site_name: 我的文档
 nav:
   - 首页: index.md
   - Java:
-    - 导航：Java/index.md
+    - Java/index.md
   - Swift:
-    - 导航：Swift/index.md
+    - Swift/index.md
