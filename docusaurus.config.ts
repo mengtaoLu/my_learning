@@ -88,6 +88,26 @@ const config: Config = {
           label: 'Tutorial',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+          {
+              to: 'https://psprices.com/region-hk/index?platform=PS5',
+              label: 'PS5游戏价格',
+              position: 'left'
+          },
+          {
+            type: 'dropdown',
+            label: 'Java',
+            position: 'left',
+            items: [
+                {
+                    label: 'Java基础',
+                    to: '/docs/Java/common/base'
+                },
+                {
+                    label: 'Java多线程',
+                    to: '/docs/Java/multi-threading/base'
+                }
+            ]
+          },
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
