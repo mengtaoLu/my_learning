@@ -1,0 +1,5 @@
+# .gitignore
+node_modules/
+.docusaurus/
+build/  <-- 确保这行存在
+.env
