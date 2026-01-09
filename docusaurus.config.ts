@@ -101,13 +101,25 @@ const config: Config = {
             items: [
                 {
                     label: 'Java基础',
-                    to: '/docs/Java/common/base'
+                    to: '/docs/Java/common/介绍'
                 },
                 {
                     label: 'Java多线程',
-                    to: '/docs/Java/multi-threading/base'
+                    to: '/docs/Java/multi-threading/介绍'
                 }
             ]
+          },
+          {
+              type: 'dropdown',
+              label: 'Tools',
+              sidebarId: 'ToolsSidebar',
+              position: 'left',
+              items: [
+                  {
+                      label: 'Linux命令',
+                      to: '/docs/category/tools-linux'
+                  }
+              ]
           },
         {
           href: 'https://github.com/facebook/docusaurus',

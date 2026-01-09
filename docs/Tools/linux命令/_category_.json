@@ -1,0 +1,8 @@
+{
+  "label": "tools-linux",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "linux命令行使用。"
+  }
+}
