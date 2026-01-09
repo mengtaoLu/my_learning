@@ -96,6 +96,7 @@ const config: Config = {
           {
             type: 'dropdown',
             label: 'Java',
+            sidebarId: 'javaSidebar',
             position: 'left',
             items: [
                 {

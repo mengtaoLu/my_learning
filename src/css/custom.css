@@ -28,3 +28,62 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* 时间线容器 */
+.timeline-container {
+    padding: 20px 0;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 垂直中心线 */
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: var(--ifm-color-primary); /* 使用 Docusaurus 主题色 */
+    top: 0;
+    bottom: 0;
+    left: 20px; /* 移动端建议靠左 */
+    margin-left: -1px;
+}
+
+/* 时间线项目 */
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 100%;
+}
+
+/* 时间圆点 */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: -8px;
+    background-color: var(--ifm-background-color);
+    border: 3px solid var(--ifm-color-primary);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+    left: 12px;
+}
+
+/* 内容卡片 */
+.timeline-content {
+    padding: 15px;
+    background-color: var(--ifm-color-emphasis-100);
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.timeline-date {
+    font-weight: bold;
+    color: var(--ifm-color-primary);
+    display: block;
+    margin-bottom: 5px;
+}
