@@ -105,7 +105,7 @@ const config: Config = {
                 },
                 {
                     label: 'Java多线程',
-                    to: '/docs/Java/multi-threading/介绍'
+                    to: '/docs/category/java多线程'
                 }
             ]
           },
