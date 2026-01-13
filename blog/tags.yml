@@ -17,3 +17,13 @@ hola:
   label: Hola
   permalink: /hola
   description: Hola tag description
+
+game:
+  label: 游戏
+  permalink: /game
+  description: 关于最近的一些游戏
+
+gundam:
+  label: 高达
+  permalink: /gundam
+  description: 高达屹立于大地之上
