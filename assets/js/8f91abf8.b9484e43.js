@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkmy_learning=globalThis.webpackChunkmy_learning||[]).push([[1796],{4521(a){a.exports=JSON.parse('{"authors":[{"name":"Tao Lu","title":"player and model hobbyist","page":{"permalink":"/my_learning/blog/authors/mengtao"},"imageURL":"./authors/avatar.webp","key":"mengtao","count":2}]}')}}]);

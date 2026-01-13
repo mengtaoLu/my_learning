@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkmy_learning=globalThis.webpackChunkmy_learning||[]).push([[4796],{6594(l){l.exports=JSON.parse('{"tags":[{"label":"Hello","permalink":"/my_learning/blog/tags/hello","description":"Hello tag description","count":1}]}')}}]);
