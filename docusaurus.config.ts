@@ -45,6 +45,8 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/mengtaoLu/my_learning',
+            showLastUpdateAuthor: true,
+            showLastUpdateTime: true
         },
         blog: {
           showReadingTime: true,
