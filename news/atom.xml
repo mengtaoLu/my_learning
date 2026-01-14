@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://mengtaolu.github.io/my_learning/news</id>
+    <title>兔子窝 Blog</title>
+    <updated>2026-01-14T03:13:31.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://mengtaolu.github.io/my_learning/news"/>
+    <subtitle>兔子窝 Blog</subtitle>
+    <icon>https://mengtaolu.github.io/my_learning/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[兔子窝]]></title>
+        <id>https://mengtaolu.github.io/my_learning/news/20260113</id>
+        <link href="https://mengtaolu.github.io/my_learning/news/20260113"/>
+        <updated>2026-01-14T03:13:31.000Z</updated>
+    </entry>
+</feed>

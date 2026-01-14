@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkmy_learning=globalThis.webpackChunkmy_learning||[]).push([[1475],{3032(a){a.exports=JSON.parse('{"metadata":{"permalink":"/my_learning/news","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"\u8fd9\u662f\u6211\u4eec\u7684\u7b2c\u4e8c\u4e2a\u535a\u5ba2\u5b9e\u4f8b","blogTitle":"\u65b0\u95fb\u52a8\u6001"}}')}}]);

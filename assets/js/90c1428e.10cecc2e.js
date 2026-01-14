@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkmy_learning=globalThis.webpackChunkmy_learning||[]).push([[7159],{6542(a){a.exports=JSON.parse('{"blogBasePath":"/my_learning/news","blogTitle":"\u65b0\u95fb\u52a8\u6001","authorsListPath":"/my_learning/news/authors"}')}}]);
