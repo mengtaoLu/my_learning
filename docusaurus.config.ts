@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
+  title: '兔子窝',
   tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
 
@@ -68,6 +68,31 @@ const config: Config = {
     ],
   ],
 
+    plugins: [
+        [
+            '@docusaurus/plugin-content-blog',
+            {
+                /**
+                 * 必须配置唯一的 ID，用于区分不同的博客实例
+                 */
+                id: 'news-blog',
+                /**
+                 * 文件的实际存放路径
+                 */
+                path: 'news',
+                /**
+                 * 浏览器访问的 URL 路径
+                 */
+                routeBasePath: 'news',
+                /**
+                 * 侧边栏标题（可选）
+                 */
+                blogTitle: '新闻动态',
+                blogDescription: '这是我们的第二个博客实例',
+            },
+        ],
+    ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
@@ -75,7 +100,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
+      title: '兔子窝',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
@@ -87,27 +112,32 @@ const config: Config = {
           position: 'left',
           label: 'Tutorial',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
           {
-              to: 'https://psprices.com/region-hk/index?platform=PS5',
-              label: 'PS5游戏价格',
-              position: 'left'
+              type: 'dropdown',
+              label: 'Blogs',
+              position: 'left',
+              items: [
+                  {
+                      label: 'Blog',
+                      to: '/blog'
+                  },
+                  {
+                      label: '兔子窝',
+                      to: '/news'
+                  }
+              ]
           },
           {
-            type: 'dropdown',
-            label: 'Java',
-            sidebarId: 'javaSidebar',
-            position: 'left',
-            items: [
-                {
-                    label: 'Java基础',
-                    to: '/docs/Java/common/介绍'
-                },
-                {
-                    label: 'Java多线程',
-                    to: '/docs/category/java多线程'
-                }
-            ]
+              type: 'dropdown',
+              label: '知识库',
+              sidebarId: 'wikiSidebar',
+              position: 'left',
+              items: [
+                  {
+                      label: 'Java',
+                      to: '/docs/wiki/java/'
+                  }
+              ]
           },
           {
               type: 'dropdown',
@@ -119,6 +149,17 @@ const config: Config = {
                       label: 'Linux命令',
                       to: '/docs/category/tools-linux'
                   }
+              ]
+          },
+          {
+              type: 'dropdown',
+              label: '网站集',
+              position: 'left',
+              items: [
+                  {
+                      to: 'https://psprices.com/region-hk/index?platform=PS5',
+                      label: 'PS5游戏价格',
+                  },
               ]
           },
         {

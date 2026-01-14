@@ -1,0 +1,9 @@
+{
+  "label": "Java",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Java wiki。",
+    "slug": "wiki/java"
+  }
+}
