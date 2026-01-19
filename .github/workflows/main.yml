@@ -16,6 +16,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+          # 新增：将变量转换为小写并存入环境变量
+      - name: Lowercase Registry Names
+        run: |
+          echo "IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}" | tr '[:upper:]' '[:lower:]' >> $GITHUB_ENV
+
       # 1. 登录到 GitHub 容器仓库 (GHCR)
       - name: Login to GHCR
         uses: docker/login-action@v3
@@ -30,14 +35,13 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/my-learning:latest
+          tags: ${{ env.IMAGE_NAME }}:latest
 
       # 3. 将刚刚构建的镜像保存为 tar.gz 文件（用于 Release 附件）
       - name: Export Image to Tarball
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/my-learning:latest
-          docker pull $IMAGE_ID
-          docker save $IMAGE_ID | gzip > latest_image.tar.gz
+          docker pull ${{ env.IMAGE_NAME }}:latest
+          docker save ${{ env.IMAGE_NAME }}:latest | gzip > latest_image.tar.gz
 
       # 4. 自动更新 Release
       # 注意：这里使用了 'latest' 作为 Release 标签，会自动覆盖该 Release 下的文件
