@@ -19,7 +19,7 @@ RUN npm run build
 FROM nginx:stable-alpine
 
 # 将第一阶段生成的静态文件拷贝到 Nginx 的默认静态资源目录
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app/build /usr/share/nginx/html/my_learning
 
 # 暴露 80 端口
 EXPOSE 80
