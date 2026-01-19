@@ -18,6 +18,9 @@ RUN npm run build
 # --- 第二阶段：运行 (Run) ---
 FROM nginx:stable-alpine
 
+# 将你的自定义 Nginx 配置复制到容器内
+COPY default.conf /etc/nginx/conf.d/default.conf
+
 # 将第一阶段生成的静态文件拷贝到 Nginx 的默认静态资源目录
 COPY --from=builder /app/build /usr/share/nginx/html/my_learning
 
