@@ -30,12 +30,12 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/myLearning:latest
+          tags: ghcr.io/${{ github.repository_owner }}/my-learning:latest
 
       # 3. 将刚刚构建的镜像保存为 tar.gz 文件（用于 Release 附件）
       - name: Export Image to Tarball
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/myLearning:latest
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/my-learning:latest
           docker pull $IMAGE_ID
           docker save $IMAGE_ID | gzip > latest_image.tar.gz
 
