@@ -138,6 +138,10 @@ const config: Config = {
                   {
                       label: 'Java',
                       to: '/docs/wiki/java/'
+                  },
+                  {
+                      label: 'CocosCreator',
+                      to: '/docs/wiki/cocos_creator'
                   }
               ]
           },

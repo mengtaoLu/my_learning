@@ -1,6 +1,6 @@
 {
   "label": "锁",
-  "position": 5,
+  "position": 2,
   "link": {
     "type": "generated-index",
     "description": "了解Java多线程中锁的知识。"

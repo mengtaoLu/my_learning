@@ -1,0 +1,9 @@
+{
+  "label": "棋子合成demo",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "chess demo。",
+    "slug": "cocosCreator/demo"
+  }
+}
