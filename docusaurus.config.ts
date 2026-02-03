@@ -145,7 +145,7 @@ const config: Config = {
                   },
                   {
                       label: 'CocosCreator',
-                      to: '/docs/wiki/cocos_creator'
+                      to: '/docs/wiki/cocosCreator'
                   }
               ]
           },
