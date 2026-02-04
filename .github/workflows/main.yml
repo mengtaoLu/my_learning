@@ -17,7 +17,8 @@ jobs:
   # --- 任务 1：Docker 打包（每次 Push 自动运行） ---
   docker-build:
     runs-on: ubuntu-latest
-    # 只要是推送或者手动触发，这个任务都会跑
+    # 关键点：只有当触发事件是 workflow_dispatch（手动）时，才执行此 Job
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -51,8 +52,7 @@ jobs:
   # --- 任务 2：部署到 Pages（仅在手动点击 Run workflow 时运行） ---
   pages-deploy:
     runs-on: ubuntu-latest
-    # 关键点：只有当触发事件是 workflow_dispatch（手动）时，才执行此 Job
-    if: github.event_name == 'workflow_dispatch'
+    # 只要是推送或者手动触发，这个任务都会跑
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
