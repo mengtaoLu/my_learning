@@ -4,7 +4,7 @@
 
 ### addInterceptors 添加拦截器
 
-参考：()[]
+参考：[拦截器](../3_核心组件/3_拦截器.md)
 
 ### addResourceHandlers 添加资源处理器
 
@@ -24,19 +24,16 @@ public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
 ### configureContentNegotiation 配置内容协商
 
-参考：()[]
 
 ### addFormatters 配置格式化器
 
-参考：()[]
+参考：[参数转换](../3_数据绑定和校验/3_参数转换.md)
 
 ### addArgumentResolvers 配置参数解析器
 
-参考：()[]
 
 ### addReturnValueHandlers 配置返回值处理器
 
-参考：()[]
 
 ### addCorsMappings 配置跨域
 
