@@ -1,0 +1,252 @@
+---
+title: Spring Security学习指南
+sidebar_position: 1
+---
+
+import React, { useState } from 'react';
+import { 
+  Shield, 
+  Lock, 
+  Key, 
+  BookOpen, 
+  Navigation, 
+  Layers, 
+  Server, 
+  Cpu, 
+  CheckCircle2, 
+  ChevronRight,
+  ExternalLink,
+  Code2,
+  AlertCircle
+} from 'lucide-react';
+
+export const App = () => {
+  const [activeTab, setActiveTab] = useState('overview');
+
+  const menuItems = [
+    { id: 'overview', title: '核心内容', icon: <Shield className="w-5 h-5" /> },
+    { id: 'architecture', title: '核心架构', icon: <Layers className="w-5 h-5" /> },
+    { id: 'roadmap', title: '学习路线', icon: <Navigation className="w-5 h-5" /> },
+    { id: 'resources', title: '学习资源', icon: <BookOpen className="w-5 h-5" /> },
+  ];
+
+  const coreConcepts = [
+    {
+      title: '认证 (Authentication)',
+      desc: '解决“你是谁”的问题。验证用户的身份凭证，如用户名密码、验证码、OAuth2 令牌等。',
+      icon: <Key className="text-blue-500" />
+    },
+    {
+      title: '授权 (Authorization)',
+      desc: '解决“你能做什么”的问题。在认证基础上，根据用户拥有的权限或角色来控制对资源的访问。',
+      icon: <Lock className="text-purple-500" />
+    },
+    {
+      title: '攻击防护',
+      desc: '内置对 CSRF（跨站请求伪造）、会话固定、点击劫持等常见安全漏洞的防御机制。',
+      icon: <Shield className="text-green-500" />
+    }
+  ];
+
+  const architectureComponents = [
+    { name: 'SecurityContextHolder', detail: '核心组件，用于存储安全上下文，即当前认证用户的详细信息。' },
+    { name: 'Authentication', detail: '代表当前用户的对象，包含其主体信息（Principal）及权限列表（Authorities）。' },
+    { name: 'UserDetailsService', detail: '策略接口，用于从数据库或内存加载用户信息。' },
+    { name: 'PasswordEncoder', detail: '用于密码的单向加密存储及匹配校验。' },
+    { name: 'Security Filter Chain', detail: 'Security 的本质：一个按顺序排列的过滤器链条，处理所有进入的请求。' }
+  ];
+
+  const roadmapSteps = [
+    {
+      stage: '第一阶段：快速上手',
+      title: 'Spring Boot 基础集成',
+      tasks: ['掌握默认配置与自定义配置类', '实现 UserDetailsService 加载用户', '学习 HttpSecurity 配置 URL 权限'],
+      color: 'border-blue-500 bg-blue-50'
+    },
+    {
+      stage: '第二阶段：深入架构',
+      title: '原理分析与深度定制',
+      tasks: ['重点研究认证过滤器链流程', '理解 AuthenticationProvider 委派模式', '自定义异常处理响应'],
+      color: 'border-indigo-500 bg-indigo-50'
+    },
+    {
+      stage: '第三阶段：前后端分离',
+      title: '无状态安全架构',
+      tasks: ['JWT (JSON Web Token) 深度集成', 'Security 环境下的跨域 (CORS) 解决', 'RESTful 格式的 JSON 错误响应'],
+      color: 'border-purple-500 bg-purple-50'
+    },
+    {
+      stage: '第四阶段：微服务安全',
+      title: 'OAuth2 与分布式安全',
+      tasks: ['学习 OAuth2 四种授权模式', '搭建 Spring Authorization Server', 'Spring Cloud Gateway 网关安全集成'],
+      color: 'border-pink-500 bg-pink-50'
+    }
+  ];
+
+  return (
+    <div className="flex flex-col md:flex-row text-slate-800 bg-slate-50 h-[calc(100vh-4rem)]">
+      {/* Sidebar */}
+      <nav className="w-full md:w-64 bg-white border-b md:border-r border-slate-200 p-6 flex flex-col gap-8 shrink-0 overflow-y-auto">
+        <div className="flex items-center gap-2 text-indigo-600 font-bold text-xl">
+          <Shield className="w-8 h-8 fill-indigo-100" />
+          <span>Security Guide</span>
+        </div>
+        
+        <div className="flex flex-col gap-1">
+          {menuItems.map(item => (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                activeTab === item.id 
+                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200' 
+                : 'text-slate-600 hover:bg-slate-100'
+              }`}
+            >
+              {item.icon}
+              <span className="font-medium">{item.title}</span>
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-auto p-4 bg-amber-50 rounded-xl border border-amber-100">
+          <div className="flex items-center gap-2 text-amber-700 font-bold mb-2">
+            <AlertCircle className="w-4 h-4" />
+            <span className="text-xs">专家建议</span>
+          </div>
+          <p className="text-xs text-amber-600 leading-relaxed">
+            不要试图背下所有过滤器。先从需求入手，再通过 Debug 查看过滤链的工作流程。
+          </p>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main className="flex-1 p-6 md:p-12 max-w-5xl mx-auto overflow-y-auto">
+        {activeTab === 'overview' && (
+          <div className="animate-in fade-in duration-500">
+            <h1 className="text-3xl font-bold mb-2">Spring Security 核心内容</h1>
+            <p className="text-slate-500 mb-8">Java 企业级开发中事实上的安全标准与工业级防御框架。</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {coreConcepts.map((concept, idx) => (
+                <div key={idx} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center mb-4">
+                    {concept.icon}
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">{concept.title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{concept.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 bg-indigo-900 rounded-3xl p-8 text-white relative overflow-hidden">
+              <div className="relative z-10">
+                <h2 className="text-2xl font-bold mb-4">为什么选择 Spring Security?</h2>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-indigo-300 mt-1 shrink-0" />
+                    <span>与 Spring 生态（Boot/Cloud）无缝集成，配置极其简单。</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-indigo-300 mt-1 shrink-0" />
+                    <span>提供强大的 Servlet 过滤器抽象，极易通过扩展实现个性化安全逻辑。</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-indigo-300 mt-1 shrink-0" />
+                    <span>作为工业级方案，内置了对 CSRF、Session 固定等多种攻击的主动防御。</span>
+                  </li>
+                </ul>
+              </div>
+              <Shield className="absolute -right-12 -bottom-12 w-64 h-64 text-white/5 rotate-12" />
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'architecture' && (
+          <div className="animate-in slide-in-from-bottom-4 duration-500">
+            <h1 className="text-3xl font-bold mb-8 flex items-center gap-3">
+              <Layers className="text-indigo-600" />
+              核心架构组件
+            </h1>
+            <div className="space-y-4">
+              {architectureComponents.map((comp, idx) => (
+                <div key={idx} className="group flex items-start gap-4 p-5 bg-white rounded-2xl border border-slate-200 hover:border-indigo-300 transition-colors">
+                  <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-400 group-hover:bg-indigo-100 group-hover:text-indigo-600 transition-colors">
+                    {idx + 1}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-slate-800 mb-1">{comp.name}</h3>
+                    <p className="text-slate-500 text-sm">{comp.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 p-6 bg-slate-100 rounded-2xl border border-dashed border-slate-300">
+              <h4 className="flex items-center gap-2 font-bold mb-3 text-slate-600">
+                <Code2 className="w-5 h-5" />
+                关键知识点：Filter Chain
+              </h4>
+              <p className="text-sm text-slate-500 leading-relaxed">
+                Spring Security 是由一大堆 Filter 组成的。请求进来时，会被按序通过 `UsernamePasswordAuthenticationFilter` (登录)、`BasicAuthenticationFilter` (Basic认证)、`FilterSecurityInterceptor` (权限决策) 等。
+              </p>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'roadmap' && (
+          <div className="animate-in fade-in duration-500">
+            <h1 className="text-3xl font-bold mb-8">深度学习路线图</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {roadmapSteps.map((step, idx) => (
+                <div key={idx} className={`p-6 rounded-3xl border-l-4 shadow-sm ${step.color}`}>
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-500 opacity-70">{step.stage}</span>
+                  <h3 className="text-xl font-bold mt-1 mb-4 text-slate-800">{step.title}</h3>
+                  <ul className="space-y-3">
+                    {step.tasks.map((task, tIdx) => (
+                      <li key={tIdx} className="flex items-start gap-2 text-sm text-slate-600">
+                        <ChevronRight className="w-4 h-4 mt-0.5 text-slate-400" />
+                        {task}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'resources' && (
+          <div className="animate-in slide-in-from-right-4 duration-500">
+            <h1 className="text-3xl font-bold mb-8">学习资源推荐</h1>
+            <div className="grid grid-cols-1 gap-4">
+              {[
+                { name: '官方文档 (Reference)', type: '文档', desc: '最权威、更新最及时的资料，包含最新的 Lambda 配置语法。', url: 'https://docs.spring.io/spring-security/reference/index.html' },
+                { name: 'Baeldung Spring Security', type: '教程', desc: '大量实用案例，直接复刻代码到项目中的利器。', url: '#' },
+                { name: 'Spring Security 实战', type: '书籍', desc: '深刻揭示框架内部逻辑，强烈推荐作为进阶阅读。', url: '#' },
+                { name: 'RuoYi-Vue 权限模块', type: '项目', desc: '国内最流行的企业级后台框架，学习 Security 落地实践的必看。', url: '#' }
+              ].map((res, idx) => (
+                <a key={idx} href={res.url} className="group flex items-center justify-between p-6 bg-white rounded-2xl border border-slate-200 hover:border-indigo-600 transition-all">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 bg-indigo-50 rounded-lg flex items-center justify-center text-indigo-600">
+                      <BookOpen className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h4 className="font-bold">{res.name}</h4>
+                        <span className="text-[10px] bg-slate-100 px-2 py-0.5 rounded text-slate-500 uppercase">{res.type}</span>
+                      </div>
+                      <p className="text-xs text-slate-500 mt-1">{res.desc}</p>
+                    </div>
+                  </div>
+                  <ExternalLink className="w-4 h-4 text-slate-300 group-hover:text-indigo-600 transition-colors" />
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+};
+
+<App />
