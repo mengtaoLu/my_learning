@@ -4,6 +4,9 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const math = require('remark-math');
+const katex = require('rehype-katex');
+
 const config: Config = {
   title: '兔子窝',
   tagline: 'Dinosaurs are cool',
@@ -39,6 +42,13 @@ const config: Config = {
     locales: ['zh-Hans'],
   },
 
+  stylesheets:[
+        {
+            href: './src/css/katex.min.css',
+            type: 'text/css'
+        },
+  ],
+
   presets: [
     [
       'classic',
@@ -50,7 +60,9 @@ const config: Config = {
           editUrl:
             'https://github.com/mengtaoLu/my_learning',
             showLastUpdateAuthor: true,
-            showLastUpdateTime: true
+            showLastUpdateTime: true,
+            remarkPlugins: [math],
+            rehypePlugins: [katex],
         },
         blog: {
           showReadingTime: true,
@@ -58,6 +70,8 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
+            remarkPlugins: [math],
+            rehypePlugins: [katex],
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -144,8 +158,8 @@ const config: Config = {
                       to: '/docs/wiki/java/'
                   },
                   {
-                      label: 'CocosCreator',
-                      to: '/docs/wiki/cocosCreator'
+                      label: 'AI',
+                      to: '/docs/wiki/ai'
                   }
               ]
           },

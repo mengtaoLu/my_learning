@@ -1,0 +1,253 @@
+---
+hide_table_of_contents: true
+---
+import React, { useState } from 'react';
+import {
+    BookOpen,
+    Code,
+    Cpu,
+    Database,
+    Layout,
+    Layers,
+    Terminal,
+    Workflow,
+    CheckCircle2,
+    ChevronRight,
+    Lightbulb,
+    ExternalLink,
+    Target,
+    Zap,
+    Coffee
+} from 'lucide-react';
+
+export const ROADMAP_DATA = [
+    {
+        id: 'java-foundations',
+        title: '第一阶段：Java 与工程基础',
+        icon: <Coffee className="w-5 h-5" />,
+        color: 'bg-orange-600',
+        topics: [
+            { name: 'Modern Java (17/21)', desc: 'Records, Sealed Classes, 虚拟线程 (Project Loom)' },
+            { name: 'Spring Boot 3.x', desc: '工程化最佳实践、响应式编程 (WebFlux)、依赖注入' },
+            { name: '容器化与部署', desc: 'Docker, Kubernetes 基础, GraalVM 原生镜像打包' },
+            { name: '现代化前端', desc: 'React 基础，掌握 Server-Sent Events (SSE) 协议' }
+        ]
+    },
+{
+id: 'spring-ai-core',
+title: '第二阶段：Spring AI 核心抽象',
+icon: <Cpu className="w-5 h-5" />,
+color: 'bg-green-600',
+topics: [
+{ name: 'ChatModel 接口', desc: '统一调用 OpenAI, Azure, Ollama, DeepSeek 等模型' },
+{ name: 'Prompt 模板', desc: '使用 Message 抽象设计角色 (System, User, Assistant)' },
+{ name: 'Function Calling', desc: '通过 Java 方法注解实现模型与外部工具的交互' },
+{ name: '结构化输出', desc: '将模型返回的文本自动映射为 Java Bean (BeanOutputConverter)' }
+]
+},
+{
+id: 'java-rag',
+title: '第三阶段：Java RAG 架构实战',
+icon: <Database className="w-5 h-5" />,
+color: 'bg-blue-600',
+topics: [
+{ name: 'VectorStore 集成', desc: '使用 Redis, PGVector, Milvus 或 MongoDB 存储向量' },
+{ name: 'Spring AI ETL', desc: 'DocumentReaders, Transformers, Writers 管道处理' },
+{ name: '高级检索策略', desc: 'Hybrid Search, 元数据过滤, 语义路由实现' },
+{ name: 'Embedding 模型', desc: '本地部署 (Ollama) 或调用 API 进行文本向量化' }
+]
+},
+{
+id: 'java-agents',
+title: '第四阶段：智能体与工作流编排',
+icon: <Workflow className="w-5 h-5" />,
+color: 'bg-purple-600',
+topics: [
+{ name: 'LangChain4j 深度应用', desc: 'Java 生态功能最全的 AI 框架，灵活的 Agent 设计' },
+{ name: 'Spring AI Advisors', desc: '拦截并处理模型上下文，实现历史记录记忆功能' },
+{ name: '任务规划与反思', desc: '实现 Self-Correction, Multi-step Planning 逻辑' },
+{ name: '状态机管理', desc: '利用 Spring Statemachine 结合 AI 实现复杂业务流' }
+]
+},
+{
+id: 'enterprise-ops',
+title: '第五阶段：企业级运维与评估',
+icon: <Layers className="w-5 h-5" />,
+color: 'bg-slate-600',
+topics: [
+{ name: 'AI 监控与审计', desc: 'Spring Boot Actuator, Prometheus, 接口调用链路追踪' },
+{ name: '安全合规 (Spring Security)', desc: '模型访问控制、内容审核过滤、API Key 安全存储' },
+{ name: '评估框架', desc: '编写测试用例对比 RAG 系统的准确度 (Ground Truth)' },
+{ name: '成本管理', desc: '记录 Token 消耗日志，分析不同业务场景的模型性价比' }
+]
+}
+];
+
+export const TOOLS_STACK = [
+{ category: '核心框架', items: ['Spring AI', 'LangChain4j', 'Spring Boot 3', 'Project Loom'] },
+{ category: '数据与向量', items: ['PGVector', 'Redis Stack', 'Milvus', 'Elasticsearch'] },
+{ category: '模型工具', items: ['Ollama (本地)', 'DeepSeek API', 'GPT-4o', 'Mistral'] },
+{ category: '构建与运维', items: ['Maven/Gradle', 'Docker', 'SkyWalking', 'Actuator'] }
+];
+
+export default function App() {
+    const [activeStage, setActiveStage] = useState('java-foundations');
+
+    return (
+        <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-orange-100">
+            {/* Header */}
+            <header className="bg-white border-b sticky top-0 z-50">
+                <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                        <div className="bg-orange-600 p-1.5 rounded-lg text-white">
+                            <Coffee size={20} />
+                        </div>
+                        <h1 className="text-xl font-bold tracking-tight">AI应用工程师学习指南 <span className="text-orange-600">Java版</span></h1>
+                    </div>
+                    <div className="hidden md:flex items-center gap-4 text-sm font-medium text-slate-600">
+                        <span className="text-green-600 bg-green-50 px-2 py-1 rounded">2025 全新发布</span>
+                    </div>
+                </div>
+            </header>
+
+            <main className="max-w-6xl mx-auto px-4 py-8">
+                {/* Intro Section */}
+                <section className="mb-12 text-center max-w-3xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-slate-900">
+                        Java 开发者如何进阶 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">AI 原生架构师</span>
+                    </h2>
+                    <p className="text-lg text-slate-600 leading-relaxed">
+                        虽然 Python 统治了算法层，但在企业级 AI 应用落地上，Java 生态凭借其强大的工程化能力、
+                        成熟的 Spring 生态和卓越的运行性能，正在成为企业开发者的首选。
+                    </p>
+                </section>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    {/* Navigation Sidebar */}
+                    <aside className="lg:col-span-4 space-y-2">
+                        <div className="bg-white p-4 rounded-xl border shadow-sm mb-4">
+                            <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-4 px-2 flex items-center gap-2">
+                                <Target size={16} /> 学习路径
+                            </h3>
+                            {ROADMAP_DATA.map((stage) => (
+                                <button
+                                    key={stage.id}
+                                    onClick={() => setActiveStage(stage.id)}
+                                    className={`w-full text-left p-3 rounded-lg transition-all flex items-center gap-3 group mb-1 ${
+                                        activeStage === stage.id
+                                            ? 'bg-orange-50 text-orange-700 ring-1 ring-orange-200'
+                                            : 'hover:bg-slate-50 text-slate-600'
+                                    }`}
+                                >
+                                    <div className={`p-2 rounded-md ${activeStage === stage.id ? 'bg-orange-600 text-white' : 'bg-slate-100 group-hover:bg-slate-200'}`}>
+                                        {stage.icon}
+                                    </div>
+                                    <span className="font-medium text-sm md:text-base">{stage.title}</span>
+                                    {activeStage === stage.id && <ChevronRight className="ml-auto w-4 h-4" />}
+                                </button>
+                            ))}
+                        </div>
+
+                        <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-2xl text-white shadow-lg">
+                            <h3 className="font-bold mb-2 flex items-center gap-2 text-lg">
+                                <Lightbulb className="w-5 h-5 text-yellow-400" /> Java 开发者优势
+                            </h3>
+                            <ul className="text-slate-300 text-sm space-y-3 leading-snug">
+                                <li className="flex gap-2">
+                                    <span className="text-orange-500 font-bold shrink-0">1.</span>
+                                    面向对象设计模式能完美处理复杂的提示词与工作流抽象。
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-orange-500 font-bold shrink-0">2.</span>
+                                    成熟的中间件支持让 AI 能够轻松集成到现有微服务架构中。
+                                </li>
+                                <li className="flex gap-2">
+                                    <span className="text-orange-500 font-bold shrink-0">3.</span>
+                                    强大的类型安全和编译期检查能减少长文本处理中的逻辑错误。
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+
+                    {/* Content Area */}
+                    <div className="lg:col-span-8 space-y-6">
+                        <div className="bg-white rounded-2xl border shadow-sm p-6 md:p-8 min-h-[500px]">
+                            {ROADMAP_DATA.filter(s => s.id === activeStage).map(stage => (
+                                <div key={stage.id} className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+                                    <div className="flex items-center gap-4 mb-6">
+                                        <div className={`${stage.color} p-3 rounded-xl text-white`}>
+                                            {stage.icon}
+                                        </div>
+                                        <div>
+                                            <h2 className="text-2xl font-bold">{stage.title}</h2>
+                                            <p className="text-slate-500">重点关注 Java 代码与 LLM 语义的融合</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid gap-4">
+                                        {stage.topics.map((topic, idx) => (
+                                            <div key={idx} className="group p-4 border rounded-xl hover:border-orange-300 hover:bg-orange-50/30 transition-colors">
+                                                <div className="flex justify-between items-start mb-1">
+                                                    <h4 className="font-bold text-lg text-slate-800 flex items-center gap-2">
+                                                        <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                                        {topic.name}
+                                                    </h4>
+                                                    <span className="text-[10px] bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full uppercase">Spring 官方推荐</span>
+                                                </div>
+                                                <p className="text-slate-600 text-sm leading-relaxed">{topic.desc}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <div className="mt-10 pt-6 border-t">
+                                        <h4 className="font-semibold text-slate-900 mb-4 flex items-center gap-2">
+                                            <Layout className="w-4 h-4" /> Java 实战建议
+                                        </h4>
+                                        <div className="bg-slate-50 rounded-xl p-4 border border-dashed border-slate-300 text-sm md:text-base">
+                                            {activeStage === 'java-foundations' && "创建一个基于 Spring Boot 3 和虚拟线程的高性能对话网关。"}
+                                            {activeStage === 'spring-ai-core' && "编写一个 Spring Service，通过 Function Calling 让 AI 能够实时查询公司数据库。"}
+                                            {activeStage === 'java-rag' && "实现一个 DocumentTransformer，在将 Java 文档存入向量库前进行语义脱敏。"}
+                                            {activeStage === 'java-agents' && "使用 LangChain4j 的 AI Services 功能构建一个能够自主处理退款申请的 Agent。"}
+                                            {activeStage === 'enterprise-ops' && "集成 Spring Boot Actuator 并自定义 Metrics，记录不同用户的 Token 使用配额。"}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Tools Grid */}
+                        <div className="bg-white rounded-2xl border shadow-sm p-6">
+                            <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
+                                <Code className="w-5 h-5 text-orange-600" /> Java AI 核心生态
+                            </h3>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                {TOOLS_STACK.map((group, idx) => (
+                                    <div key={idx} className="space-y-2">
+                                        <p className="text-xs font-bold text-slate-400 uppercase">{group.category}</p>
+                                        <ul className="space-y-1">
+                                            {group.items.map((item, i) => (
+                                                <li key={i} className="text-sm font-medium flex items-center gap-1.5 text-slate-700">
+                                                    <div className="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
+                                                    {item}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            {/* Footer */}
+            <footer className="bg-white border-t mt-12 py-8">
+                <div className="max-w-6xl mx-auto px-4 text-center">
+                    <p className="text-slate-400 text-sm">
+                        © 2025 Java AI Application Engineer Guide. 基于 Spring AI & LangChain4j 最新版本构建。
+                    </p>
+                </div>
+            </footer>
+        </div>
+    );
+}
